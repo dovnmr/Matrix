@@ -91,9 +91,11 @@ int main(){
 //    assert(a == -1);
 //    assert(matrix.size() == 0);
     matrix(100, 200) = 314;
+    int b = matrix(100, 200);
 //    assert(matrix(100, 200) == 314);
 //    assert(matrix.size() == 1);
     matrix[50][10] = 30;
 //    assert(matrix[50][10] == 30);
+    cout<<b<<" "<<a<<endl;
     return 0;
 }
