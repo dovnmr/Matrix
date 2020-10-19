@@ -1,0 +1,37 @@
+dist: xenial
+language: cpp
+compiler: clang
+
+branches:
+  only:
+   - master
+
+addons:
+  apt:
+    packages:
+#    - libboost-test-dev
+#    - libspdlog-dev
+     - doxygen
+     - graphviz
+script:
+- cmake .
+- cmake --build .
+# - cmake --build . --target template
+- cmake --build . --target package
+- doxygen doxygen.conf
+
+deploy:
+#  - provider: script
+#    skip_cleanup: true
+#    script:
+#      - curl -f -T matrix-0.0.${TRAVIS_BUILD_NUMBER}-Linux.deb -udovnmr:${BINTRAY_API_KEY} "https://api.bintray.com/content/dovnmr/otus-cpp/homework/${TRAVIS_BUILD_NUMBER}/matrix-0.0.${TRAVIS_BUILD_NUMBER}-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
+#    on:
+#      branch: master
+
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep_history: true
+    local_dir: $TRAVIS_BUILD_DIR/doxygen/html
+    on:
+      branch: master
