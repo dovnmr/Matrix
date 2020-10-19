@@ -11,7 +11,7 @@ set(matrix PROPERTIES
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 )
 
-install(TARGETS template RUNTIME DESTINATION bin)
+install(TARGETS matrix RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
